@@ -70,6 +70,7 @@ public class Kafe24 {
         }
         System.out.println("=======================");
         System.out.println("Total keseluruhan pesanan: Rp " + totalKeseluruhan);
-    }
 
+        sc.close();
+    }
 }
