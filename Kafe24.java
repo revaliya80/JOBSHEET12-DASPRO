@@ -51,14 +51,25 @@ public class Kafe24 {
         Scanner sc = new Scanner(System.in);
         Menu("Budi", true, "DISKON30");
 
-        System.out.print("\nMasukkan nomor menu yang ingin Anda pesan: ");
-        int pilihanMenu = sc.nextInt();
-        System.out.print("Masukkan jumlah item yang ingin dipesan: ");
-        int banyakItem = sc.nextInt();
-        System.out.print("Masukkan kode promo: ");
-        String kodePromo = sc.next();
+        int totalKeseluruhan = 0;
+        String lanjut = "y";
 
-        int totalBayar = hitungTotalHarga24(pilihanMenu, banyakItem, kodePromo);
-        System.out.println("Total harga untuk pesanan anda: Rp " + totalBayar);
+        while (lanjut.equalsIgnoreCase("y")) {
+            System.out.print("\nMasukkan nomor menu yang ingin Anda pesan: ");
+            int pilihanMenu = sc.nextInt();
+            System.out.print("Masukkan jumlah item yang ingin dipesan: ");
+            int banyakItem = sc.nextInt();
+            System.out.print("Masukkan kode promo: ");
+            String kodePromo = sc.next();
+
+            int totalBayar = hitungTotalHarga24(pilihanMenu, banyakItem, kodePromo);
+            totalKeseluruhan += totalBayar;
+
+            System.out.println("Ingin menambah pesanan lain? (y/n)");
+            lanjut = sc.next();
+        }
+        System.out.println("=======================");
+        System.out.println("Total keseluruhan pesanan: Rp " + totalKeseluruhan);
     }
+
 }
