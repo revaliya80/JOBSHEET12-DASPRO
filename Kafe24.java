@@ -27,24 +27,38 @@ public class Kafe24 {
         System.out.println("Silakan pilih menu yang Anda inginkan.");
     }
 
-    public static int hitungTotalHarga24(int pilihanMenu, int banyakItem) {
+    public static int hitungTotalHarga24(int pilihanMenu, int banyakItem, String kodePromo) {
         int[] hargaItems = { 15000, 20000, 22000, 12000, 10000, 18000 };
 
         int hargaTotal = hargaItems[pilihanMenu - 1] * banyakItem;
-        return hargaTotal;
+        double diskon = 0;
+
+        if (kodePromo.equals("DISKON50")) {
+            diskon = 0.50;
+            System.out.println("Kode promo DISKON50 berhasil! diskon 50% diberikan");
+        } else if (kodePromo.equals("DISKON30")) {
+            diskon = 0.30;
+            System.out.println("Kode promo DISKON30 berhasil! Diskon 30% diberikan");
+        } else {
+            System.out.println("Kode promo invalid! tidak ada diskon");
+        }
+
+        int totalSetelah = (int) (hargaTotal - (hargaTotal * diskon));
+        return totalSetelah;
     }
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         Menu("Budi", true, "DISKON30");
 
-        System.out.println("\nMasukkan nomor menu yang ingin Anda pesan: ");
+        System.out.print("\nMasukkan nomor menu yang ingin Anda pesan: ");
         int pilihanMenu = sc.nextInt();
-        System.out.println("Masukkan jumlah item yang ingin dipesan: ");
+        System.out.print("Masukkan jumlah item yang ingin dipesan: ");
         int banyakItem = sc.nextInt();
+        System.out.print("Masukkan kode promo: ");
+        String kodePromo = sc.next();
 
-        int totalBayar = hitungTotalHarga24(pilihanMenu, banyakItem);
-
+        int totalBayar = hitungTotalHarga24(pilihanMenu, banyakItem, kodePromo);
         System.out.println("Total harga untuk pesanan anda: Rp " + totalBayar);
     }
 }
